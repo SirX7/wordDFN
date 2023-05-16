@@ -22,6 +22,7 @@ API_KEY = GET_SETTINGS["api_key"]
 URL = "https://api.wordnik.com/v4/word.json/"
 
 
+# This function is to be render unnecessary due to wordnik TOS of not allowing data to be cache.
 def verify_file(fp: _Path) -> _Path:
     """Verify if the file in the giving path exists and check to see if it is empty or not, if not exist it try to creat one."""
 
@@ -50,6 +51,7 @@ def verify_file(fp: _Path) -> _Path:
         return fp.absolute()
 
 
+# This function is to be render unnecessary due to wordnik TOS of not allowing data to be cache.
 def creat_cache_file(fp: _Path) -> None:
     """Creat a cache file to store data from the wordnik api. Also can be use to creat file for any purpose."""
 
@@ -62,6 +64,7 @@ def creat_cache_file(fp: _Path) -> None:
         file.write("{}")
 
 
+# This function is to be render unnecessary due to wordnik TOS of not allowing data to be cache.
 def cache_data(fp: _Path, dataToCache: list | tuple, dk: str, kp: str) -> None:
     """Store data from the API in to a cache file for future usege."""
 
@@ -98,6 +101,7 @@ def cache_data(fp: _Path, dataToCache: list | tuple, dk: str, kp: str) -> None:
         print(f"Save successfull.")
 
 
+# This function is to be render unnecessary due to wordnik TOS of not allowing data to be cache.
 def uncache_data(fp: _Path, dk: str, kp: str) -> list[str | list]:
     """Retrevie data from a cache file and return the data."""
 
@@ -113,6 +117,7 @@ def uncache_data(fp: _Path, dk: str, kp: str) -> list[str | list]:
     return dataValue
 
 
+# This function is to be render unnecessary due to wordnik TOS of not allowing data to be cache.
 def cache_data_pparser(data: list[str | list], kp: str) -> None:
     """Parse and print data from the cache file."""
 
@@ -131,6 +136,7 @@ def cache_data_pparser(data: list[str | list], kp: str) -> None:
             print(val)
 
 
+# This function is to be render unnecessary due to wordnik TOS of not allowing data to be cache.
 def cache_data_verifier(fp: _Path, word: str, kword: str) -> bool:
     """Verifies if a word to search for is in a cache file. If the word exist return True, if not return False."""
 
@@ -355,7 +361,7 @@ def menu(word: str) -> str:
             key = "ant"
             break
         elif key == "c":
-            word = _pclp.copy(" ")
+            word = _pclp.copy("")  # Remove empty string
             break
         elif key == "q":
             _sys.exit()
@@ -369,7 +375,6 @@ def menu(word: str) -> str:
 
 
 def main() -> None:
-
     filePath = _Path("./data/cache/wordDnf.json")
 
     # Endpoints that can be use.

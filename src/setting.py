@@ -17,7 +17,7 @@ def setting_handler() -> dict:
     sf: _Path = _Path("./data/usr/settings.json")
 
     # Define a variable to serialize to a json format.
-    fileContent: dict = {"api_key": "", "handler": ""}
+    fileContent: dict = {"api_key": "", "handler": "_pclp.paste()"}#init handler with clipboard
 
     if sf.exists():
 
