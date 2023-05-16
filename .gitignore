@@ -3,13 +3,17 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Test files
-test/
-Test/
-
 # Module files
 module/
 Module/
+
+# Samples files
+samples/
+Samples
+
+# Test files
+test/
+Test/
 
 # Environments
 .env
