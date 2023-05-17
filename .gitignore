@@ -12,8 +12,8 @@ samples/
 Samples
 
 # Test files
-test/
-Test/
+tests/
+Tests/
 
 # Environments
 .env
@@ -23,6 +23,26 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 
 # Others
 data/
