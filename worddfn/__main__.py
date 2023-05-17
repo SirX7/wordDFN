@@ -11,8 +11,8 @@ import pyperclip as _pclp
 from requests import Request, Session, codes
 from requests.exceptions import ConnectionError, HTTPError, Timeout, TooManyRedirects
 
-import dictionaryAPI as _da
-from setting import setting_handler as _sh
+from worddfn import dictionaryAPI as _da
+from worddfn.setting import setting_handler as _sh
 
 # Manage user setting from .json file.
 GET_SETTINGS = _sh()
