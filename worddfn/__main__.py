@@ -23,7 +23,7 @@ URL = "https://api.wordnik.com/v4/word.json/"
 
 
 # This function is to be render unnecessary due to wordnik TOS of not allowing data to be cache.
-def verify_file(fp: _Path) -> _Path:
+def _verify_file(fp: _Path) -> _Path:
     """Verify if the file in the giving path exists and check to see if it is empty or not, if not exist it try to creat one."""
 
     # verify if the file path exist.
@@ -46,13 +46,13 @@ def verify_file(fp: _Path) -> _Path:
         # If file does not exists, should be created.
         print(f"No cache file found but will be created...")
         # Call function to create the cache file.
-        creat_cache_file(fp)
+        _creat_cache_file(fp)
         # return the absolute file path.
         return fp.absolute()
 
 
 # This function is to be render unnecessary due to wordnik TOS of not allowing data to be cache.
-def creat_cache_file(fp: _Path) -> None:
+def _creat_cache_file(fp: _Path) -> None:
     """Creat a cache file to store data from the wordnik api. Also can be use to creat file for any purpose."""
 
     print(f"creating cache file in {_os.path.abspath(fp)}")
@@ -65,7 +65,7 @@ def creat_cache_file(fp: _Path) -> None:
 
 
 # This function is to be render unnecessary due to wordnik TOS of not allowing data to be cache.
-def cache_data(fp: _Path, dataToCache: list | tuple, dk: str, kp: str) -> None:
+def _cache_data(fp: _Path, dataToCache: list | tuple, dk: str, kp: str) -> None:
     """Store data from the API in to a cache file for future usege."""
 
     data: dict = {}
@@ -102,7 +102,7 @@ def cache_data(fp: _Path, dataToCache: list | tuple, dk: str, kp: str) -> None:
 
 
 # This function is to be render unnecessary due to wordnik TOS of not allowing data to be cache.
-def uncache_data(fp: _Path, dk: str, kp: str) -> list[str | list]:
+def _uncache_data(fp: _Path, dk: str, kp: str) -> list[str | list]:
     """Retrevie data from a cache file and return the data."""
 
     # Use a context maneger to help open and close the I/O of the file being use.
@@ -118,7 +118,7 @@ def uncache_data(fp: _Path, dk: str, kp: str) -> list[str | list]:
 
 
 # This function is to be render unnecessary due to wordnik TOS of not allowing data to be cache.
-def cache_data_pparser(data: list[str | list], kp: str) -> None:
+def _cache_data_pparser(data: list[str | list], kp: str) -> None:
     """Parse and print data from the cache file."""
 
     if kp == "def":
@@ -137,7 +137,7 @@ def cache_data_pparser(data: list[str | list], kp: str) -> None:
 
 
 # This function is to be render unnecessary due to wordnik TOS of not allowing data to be cache.
-def cache_data_verifier(fp: _Path, word: str, kword: str) -> bool:
+def _cache_data_verifier(fp: _Path, word: str, kword: str) -> bool:
     """Verifies if a word to search for is in a cache file. If the word exist return True, if not return False."""
 
     # Use a context maneger to help open and close the I/O of the file being use.
@@ -385,7 +385,7 @@ def main() -> None:
     key: str = ""
     word: str = ""
 
-    print(verify_file(filePath))
+    print(_verify_file(filePath))
 
     # Make use of the clipboard with _pclp.paste() (where _pclp is calling pyperclip module.)
     clip = GET_SETTINGS["handler"]
@@ -402,13 +402,13 @@ def main() -> None:
             word = word[0]
 
             # verify word and check where to retrive resoult from.
-            val = cache_data_verifier(filePath, word, key)
+            val = _cache_data_verifier(filePath, word, key)
 
             if val:
                 print("Retriving data from cache file.....")
-                ucd = uncache_data(filePath, word, key)
+                ucd = _uncache_data(filePath, word, key)
 
-                cache_data_pparser(ucd, key)
+                _cache_data_pparser(ucd, key)
                 word = _pclp.copy("")
 
             elif not val:
@@ -431,7 +431,7 @@ def main() -> None:
                         zipped_def = _zl(att, sr, sig, epl, fillvalue="-")
                         for zwd in zipped_def:
                             cache_deff.append(zwd)
-                        cache_data(filePath, cache_deff, word, key)
+                        _cache_data(filePath, cache_deff, word, key)
                         word = _pclp.copy("")
 
                 elif key == "verb":
@@ -448,7 +448,7 @@ def main() -> None:
 
                     else:
                         # save data to cache:
-                        cache_data(filePath, verb_result, word, key)
+                        _cache_data(filePath, verb_result, word, key)
                         word = _pclp.copy("")
 
                 elif key == "syn":
@@ -465,7 +465,7 @@ def main() -> None:
 
                     else:
                         # save data to cache:
-                        cache_data(filePath, syn_result, word, key)
+                        _cache_data(filePath, syn_result, word, key)
                         word = _pclp.copy("")
 
                 elif key == "ant":
@@ -482,7 +482,7 @@ def main() -> None:
 
                     else:
                         # save data to cache:
-                        cache_data(filePath, ant_result, word, key)
+                        _cache_data(filePath, ant_result, word, key)
                         word = _pclp.copy("")
 
     elif word == "":
@@ -498,13 +498,13 @@ def main() -> None:
                 print(f"{key}:{word}")  # Test code.
                 if key == "word":
                     key = "def"
-                val = cache_data_verifier(filePath, word, key)
+                val = _cache_data_verifier(filePath, word, key)
 
                 if val:
                     print("Retriving data from cache file.....")
-                    ucd = uncache_data(filePath, word, key)
+                    ucd = _uncache_data(filePath, word, key)
 
-                    cache_data_pparser(ucd, key)
+                    _cache_data_pparser(ucd, key)
 
                 elif not val:
                     if key == "def":
@@ -525,7 +525,7 @@ def main() -> None:
                             zipped_def = _zl(att, sr, sig, epl, fillvalue="-")
                             for zwd in zipped_def:
                                 cache_deff.append(zwd)
-                            cache_data(filePath, cache_deff, word, key)
+                            _cache_data(filePath, cache_deff, word, key)
 
                     elif key == "verb":
                         try:
@@ -540,7 +540,7 @@ def main() -> None:
 
                         else:
                             # save data to cache:
-                            cache_data(filePath, verb_result, word, key)
+                            _cache_data(filePath, verb_result, word, key)
 
                     elif key == "syn":
                         try:
@@ -555,7 +555,7 @@ def main() -> None:
 
                         else:
                             # save data to cache:
-                            cache_data(filePath, syn_result, word, key)
+                            _cache_data(filePath, syn_result, word, key)
 
                     elif key == "ant":
                         try:
@@ -570,7 +570,7 @@ def main() -> None:
 
                         else:
                             # save data to cache:
-                            cache_data(filePath, ant_result, word, key)
+                            _cache_data(filePath, ant_result, word, key)
 
 
 # Code executer.
