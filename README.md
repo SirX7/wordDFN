@@ -1,18 +1,15 @@
 # wordDFN  
 Search for definition with example, verbs, synonyms and antonyms of a given word.  
-
-worddfn use the **[wordnik](https://developer.wordnik.com/)** API to retrieve data about a single word and parses it into the cli (terminal) for the user.  
-
-This module make use of the x.org system clipboard via the **pyperclip** Python module for copy and paste clipboard functions.  
-
----  
-
-### Note  
-worddfn is not been tested on macOS and Windows at the moment.  
+  
+worddfn is a wordnik API CLI client that uses the **[wordnik](https://developer.wordnik.com/)** API to retrieve data about a single word and parse it into the cli (terminal) for the user.  
 
 ---
 
 ## Requirements  
+### Note  
+**worddfn has not been tested on Mac and Windows at the moment**, but should be able to function properly.  
+On **Mac**, need to assure that the *pbcopy* and *pbpaste* commands are present.  
+On **Windows**, no additional modules are needed.  
 
 1. System
     - Linux:  
@@ -33,7 +30,7 @@ worddfn is not been tested on macOS and Windows at the moment.
 ---
 
 # CAUTION!  
-While this module is release under the GPLv3 ([see license](#License)) the API is not, wordnik have it's own TOS, i hereby acknowledge those TOS and ask of everyone who come to use this module to do the same. In the source code of this module there are a function that is use to cache data solely for the Purpose of readability (to beter manage the parsing of the data) and nothing else.  
+While this module (*client*) is release under the MIT License ([see license](#license)) the API is not, wordnik have it's own TOS, i hereby acknowledge those TOS and ask of anyone who come to use this client to do the same. In the source code of this module there are a function that is use to cache data solely for the Purpose of readability (to beter manage the parsing of the data) and nothing else.  
 For more information on the wordnik API TOS [see Wordnik API Terms of Service Agreement](https://developer.wordnik.com/terms "TOS").  
 
 ---
@@ -132,16 +129,14 @@ remember to check the `-h` or `--help` option for more details on using worddfn.
 > To search for the synonym of a word use:  
 > `$ word -s source`  
 > To search for the antonym of a word use:  
-> `$ word -s source`  
+> `$ word -o source`  
 
 ### INSTALL FROM SOURCE  
 This is not the recommended way to go about installing this module especially for inexperience python users who is only looking to use the module as a cli utility, while the steeps are generally easy to follow you may encounter with unexpected errors. **The recommended ways** are to install from **PyPI** *[ see installation section](#instalation)* or download the **latest build package** from the *[repo](# "worddfn repo")*.
 
 System requirement [see](#requirements).  
 To Build this module first clone or download the repo.  
-```
-pass
-```
+
 Make sure you have the latest version of PyPA’s build installed, run:  
 ```
 python3 -m pip install --upgrade build`
@@ -159,11 +154,19 @@ After the build is completed, it should generate two files in the dist directory
 cd /path/to/wordDFN/dist
 pip3 install worddfn-x.x.x-py3-none-any.whl
 ```
+
+---
+
 ## Credits  
 This project uses:  
 [wordnik](https://www.wordnik.com/) API.  
 [pyperclip](https://pypi.org/project/pyperclip/#description) to help manage the clipboard see [pyperclip repo](https://github.com/asweigart/pyperclip).  
 [xclip](https://github.com/astrand/xclip) as system dependency use by pyperclip.  
+
+---
+
 ## License  
-This project is licensed under the terms of the [GPLv3 license](#).  
-This project also respects and acknowledge the TOS of [wordnik API](https://developer.wordnik.com/terms).
+This project is licensed under the terms of the [MIT license](#LICENSE).  
+  
+### WORDNIK API  
+This project also respects and acknowledge the TOS of [wordnik API](https://developer.wordnik.com/terms).  
