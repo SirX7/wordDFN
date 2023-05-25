@@ -56,9 +56,11 @@ def _creat_cache_file(fp: _Path) -> None:
     """Creat a cache file to store data from the wordnik api. Also can be use to creat file for any purpose."""
 
     print(f"creating cache file in {_os.path.abspath(fp)}")
-    # creat a file given in the filePath.
-    cachePath = _Path("./data/cache/")
+    # define the filePath in the user home directory.
+    cachePath = _Path.home() / _Path(".Worddfn/data/")
+    # assure that all parent directory exist. For that creat directory that does not exist
     _os.makedirs(cachePath)
+    # creat the file in the given path.
     fp.touch()
     with open(fp, "w") as file:
         file.write("{}")
@@ -375,7 +377,7 @@ def menu(word: str) -> str:
 
 
 def main() -> None:
-    filePath = _Path("./data/cache/wordDnf.json")
+    filePath = _Path.home() / _Path(".Worddfn/data/wordDnf.json")
 
     # Endpoints that can be use.
     defEndpoint: str = "definitions"

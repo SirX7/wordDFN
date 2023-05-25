@@ -28,7 +28,7 @@ dependencies = [
     "pyperclip==1.8.2",
     "requests==2.30.0",
 ]
-dynamic = ["version"]
+#dynamic = ["version"]
 
 [project.urls]
 "Homepage" = "https://github.com/SirX7/wordDFN"
