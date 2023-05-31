@@ -18,6 +18,7 @@ from worddfn.setting import setting_handler as _sh
 GET_SETTINGS = _sh()
 
 API_KEY = GET_SETTINGS["api_key"]
+CLIP = GET_SETTINGS["handler"]
 
 URL = "https://api.wordnik.com/v4/word.json/"
 
@@ -363,8 +364,9 @@ def menu(word: str) -> str:
             key = "ant"
             break
         elif key == "c":
-            word = _pclp.copy("")  # Remove empty string
-            break
+            # clear the clipboard and exit.
+            _pclp.copy("")
+            _sys.exit()
         elif key == "q":
             _sys.exit()
         else:
@@ -390,8 +392,10 @@ def main() -> None:
     print(_verify_file(filePath))
 
     # Make use of the clipboard with _pclp.paste() (where _pclp is calling pyperclip module.)
-    clip = GET_SETTINGS["handler"]
-    word = eval(clip)
+    # clip = GET_SETTINGS["handler"]
+    # word = eval(clip)
+    if CLIP == "clipboard":
+        word = _pclp.paste()
 
     # Check to see if word exist in the clipboard.
     if word != "":
