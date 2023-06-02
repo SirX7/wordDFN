@@ -4,7 +4,6 @@ build-backend = "hatchling.build"
 
 [project]
 name = "worddfn"
-version = "0.0.3"
 authors = [
   { name="Shall Mcfield", email="xhall.mc@protonmail.com" },
 ]
@@ -28,11 +27,15 @@ dependencies = [
     "pyperclip==1.8.2",
     "requests==2.30.0",
 ]
-#dynamic = ["version"]
+
+dynamic = ["version"]
 
 [project.urls]
 "Homepage" = "https://github.com/SirX7/wordDFN"
 "Bug Tracker" = "https://github.com/SirX7/wordDFN/issues"
+
+[tool.hatch.version]
+path = "worddfn/__init__.py"
 
 [project.scripts]
 word = "worddfn.__main__:main"
