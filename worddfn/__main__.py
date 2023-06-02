@@ -125,16 +125,18 @@ def _cache_data_pparser(data: list[str | list], kp: str) -> None:
     """Parse and print data from the cache file."""
 
     if kp == "def":
+        print(f"{'*'*32} {'Definitions':^5} {'*'*32}")
         for items in data:
+            print(f"\n")
             for val in items:
                 print(val)
     else:
         if kp == "verb":
-            print("Verb:")
+            print(f"{'*'*5} {'Verb':^4} {'*'*5}\n")
         elif kp == "syn":
-            print("synonym:")
+            print(f"{'*'*5} {'Synonym':^4} {'*'*5}\n")
         elif kp == "ant":
-            print("antonym:")
+            print(f"{'*'*5} {'Antonym':^4} {'*'*5}\n")
         for val in data:
             print(val)
 
@@ -326,17 +328,18 @@ def word_api_printer(ep: str, data: list | tuple, key: str) -> None:
     if ep == "definitions":
         atrib, src, meaning, eg = data
         word_group = _zl(atrib, src, meaning, eg, fillvalue="-")
+        print(f"{'*'*42} {'Definitions':^5} {'*'*42}")
         for a, s, m, e in word_group:
-            wp = f"Attribution:{a} ({s})\nDefinition:{m}\nExample:{e}\n"
+            wp = f"\nAttribution:{a} ({s})\n{'-'*(len(a)+len(s)+15)}\n{'-'*200}\nMeaning:\n{'-'*len('Meaning')}\n\t{m}\n\nExample:\n{'-'*len('Example')}\n\t{e}\n{'-'*200}\n"
             print(wp)
 
     elif ep == "relatedWords":
         if key == "verb":
-            print("Verb:")
+            print(f"{'*'*5} {'Verb':^4} {'*'*5}\n")
         elif key == "syn":
-            print("synonym:")
+            print(f"{'*'*5} {'Synonym':^4} {'*'*5}\n")
         elif key == "ant":
-            print("antonym:")
+            print(f"{'*'*5} {'Antonym':^4} {'*'*5}\n")
         for rel in data:
             wp = f"{rel}"
             print(wp)
