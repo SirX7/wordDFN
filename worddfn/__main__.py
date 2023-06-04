@@ -36,8 +36,10 @@ def _verify_file(fp: _Path) -> _Path:
             # return the absolute file path.
             return fp.absolute()
         else:
-            # get the file size.
+            # If the file exist but is empty.
+            # Get the file size.
             print(f"File Empty::{_os.path.getsize(fp)} bytes of cache data.")
+            # Write an empty dictionary/json Object to the file.
             with open(fp, "w") as file:
                 file.write("{}")
             # return the absolute file path.
@@ -153,16 +155,27 @@ def _cache_data_verifier(fp: _Path, word: str, kword: str) -> bool:
 
         # Verify if a word to search for exists in the data variable witch should be converted upon deserilizing to a python dictionary.
         if word in data:
-            print(f"{word} found in cache file {fp.name}.")
+            print(f"{word} found in {fp.name} cache file.")
             # Check to see if the word has any definition, verb, synonyms or antonyms.
             if data[word][kword] == []:
-                print(f"{kword} have no value.")
-                return False
+                if kword == "def":
+                    print(f"Definition have no value.")
+                    return False
+                elif kword == "verb":
+                    print(f"Verb have no value.")
+                    return False
+                elif kword == "syn":
+                    print(f"Synonym have no value.")
+                    return False
+
+                elif kword == "ant":
+                    print(f"Antonym have no value.")
+                    return False
             return True
 
         # If the word (meaning the key) does not exixts then return False.
         else:
-            print(f"{word} is not present in the cache file {fp.name}")
+            print(f"{word} is not present in the {fp.name} cache file. ")
             return False
 
 
@@ -274,7 +287,7 @@ def api_handler(
 
     # Set all api elements to the dictionaryAPI.WordnikConfig object. use most for debuging.
     caller.api_construct(url, headers, parameters)
-    print(caller.show_api_obj())  # This line is for test and Debugging.
+    # print(caller.show_api_obj())  # This line is for test and Debugging.
 
     # Creat the requests session object to be use to call the api.
     session = Session()
@@ -350,7 +363,7 @@ def menu(word: str) -> str:
     Take the word to search for and return a key that is use to lookup the word."""
 
     key = input(
-        f"What part would you like to learn of {word}?\nOption:\nSelect/type a leter to chose your option:\nDefinition:[d/D]\nVerb:[f/F]\nSynonym:[s/S]\nAntonym:[o/O]\nExit:[q/Q]\nTo clear the clip board press [c/C]\n> "
+        f"{'*'*(55+(len(word)))}\nWhat part would you like to extract from the word {word}?\nOption:\nSelect/type a leter to chose your option:\nDefinition:[d/D]\nVerb:[f/F]\nSynonym:[s/S]\nAntonym:[o/O]\nExit:[q/Q]\nTo clear the clip board press [c/C]\n{'*'*(55+(len(word)))}\n> "
     )
     key = key.lower()
     while key:
@@ -375,7 +388,7 @@ def menu(word: str) -> str:
         else:
             print(f"Option invalid , try again")
             key = input(
-                f"What part would you like to learn of {word}?\nOption:\nSelect/type a leter to chose your option:\nDefinition:[d/D]\nVerb:[f/F]\nSynonym:[s/S]\nAntonym:[o/O]\nExit:[q/Q]\nTo clear the clip board press [c/C]\n> "
+                f"{'*'*(55+(len(word)))}\nWhat part would you like to extract from the word {word}?\nOption:\nSelect/type a leter to chose your option:\nDefinition:[d/D]\nVerb:[f/F]\nSynonym:[s/S]\nAntonym:[o/O]\nExit:[q/Q]\nTo clear the clip board press [c/C]\n{'*'*(55+(len(word)))}\n> "
             )
             key = key.lower()
     return key
@@ -392,7 +405,8 @@ def main() -> None:
     key: str = ""
     word: str = ""
 
-    print(_verify_file(filePath))
+    # Check to see is the given path exist, if not will be created
+    _verify_file(filePath)
 
     # Make use of the clipboard with _pclp.paste() (where _pclp is calling pyperclip module.)
     # clip = GET_SETTINGS["handler"]
@@ -402,7 +416,7 @@ def main() -> None:
 
     # Check to see if word exist in the clipboard.
     if word != "":
-        print(f"Word in clipboard")
+        print(f"Using the clipboard")
         key = menu(word)
 
         # make sure there is only one word in the clipboard.
@@ -410,15 +424,15 @@ def main() -> None:
         if len(word) >= 1:
             word = word[0]
 
-            # verify word and check where to retrive resoult from.
+            # verify word and check where to retrieve resoult from.
             val = _cache_data_verifier(filePath, word, key)
 
             if val:
-                print("Retriving data from cache file.....")
+                # print("Retriving data from cache file.....")
                 ucd = _uncache_data(filePath, word, key)
 
                 _cache_data_pparser(ucd, key)
-                word = _pclp.copy("")
+                # word = _pclp.copy("")
 
             elif not val:
                 if key == "def":
@@ -431,7 +445,7 @@ def main() -> None:
                     except (AttributeError, TypeError) as e:
                         # print(f"{word} not found: {e}")# help to see the type of exception that is being.
                         print(f"Definition for {word} not found")
-                        word = _pclp.copy("")
+                        # word = _pclp.copy("")
 
                     else:
                         # save data to cache:
@@ -441,7 +455,7 @@ def main() -> None:
                         for zwd in zipped_def:
                             cache_deff.append(zwd)
                         _cache_data(filePath, cache_deff, word, key)
-                        word = _pclp.copy("")
+                        # word = _pclp.copy("")
 
                 elif key == "verb":
                     try:
@@ -453,12 +467,12 @@ def main() -> None:
                     except (AttributeError, TypeError) as e:
                         # print(f"{word} not found: {e}")# help to see the type of exception that is being.
                         print(f"Verb for {word} not found")
-                        word = _pclp.copy("")
+                        # word = _pclp.copy("")
 
                     else:
                         # save data to cache:
                         _cache_data(filePath, verb_result, word, key)
-                        word = _pclp.copy("")
+                        # word = _pclp.copy("")
 
                 elif key == "syn":
                     try:
@@ -470,12 +484,12 @@ def main() -> None:
                     except (AttributeError, TypeError) as e:
                         # print(f"{word} not found: {e}")# help to see the type of exception that is being.
                         print(f"Synonym for {word} not found")
-                        word = _pclp.copy("")
+                        # word = _pclp.copy("")
 
                     else:
                         # save data to cache:
                         _cache_data(filePath, syn_result, word, key)
-                        word = _pclp.copy("")
+                        # word = _pclp.copy("")
 
                 elif key == "ant":
                     try:
@@ -487,15 +501,15 @@ def main() -> None:
                     except (AttributeError, TypeError) as e:
                         # print(f"{word} not found: {e}")# help to see the type of exception that is being.
                         print(f"Antonym for {word} not found")
-                        word = _pclp.copy("")
+                        # word = _pclp.copy("")
 
                     else:
                         # save data to cache:
                         _cache_data(filePath, ant_result, word, key)
-                        word = _pclp.copy("")
+                        # word = _pclp.copy("")
 
     elif word == "":
-        print(f"Nothing in clipboard")
+        print(f"Using cli argument")
 
         # Args return from args_handler function.
         words = args_handler()
@@ -504,13 +518,12 @@ def main() -> None:
             if w != None:
                 key = k
                 word = w
-                print(f"{key}:{word}")  # Test code.
                 if key == "word":
                     key = "def"
                 val = _cache_data_verifier(filePath, word, key)
 
                 if val:
-                    print("Retriving data from cache file.....")
+                    # print("Retriving data from cache file.....")
                     ucd = _uncache_data(filePath, word, key)
 
                     _cache_data_pparser(ucd, key)
@@ -584,5 +597,4 @@ def main() -> None:
 
 # Code executer.
 if __name__ == "__main__":
-    print(__name__)
     main()

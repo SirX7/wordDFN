@@ -59,7 +59,7 @@ class WordnikConfig:
                 val = query[0]
                 # Check to see if the querry have numbers in it.
                 if val.isdecimal():
-                    print(type(val))  # test code
+                    # print(type(val))  # test code
                     limit_relations: str = query[0]
 
                     parameters = {
