@@ -509,7 +509,7 @@ def main() -> None:
                         # word = _pclp.copy("")
 
     elif word == "":
-        print(f"Using cli argument")
+        print(f"Using cli argument\nrun word -h to view how to run commands")
 
         # Args return from args_handler function.
         words = args_handler()

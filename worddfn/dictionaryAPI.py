@@ -69,7 +69,7 @@ class WordnikConfig:
 
                 # Check to see if the querry is compose of only string.
                 elif val.isalpha():
-                    print(type(val))  # test code
+                    # print(type(val))  # test code
                     word_relations: str = query[0]
 
                     parameters = {
