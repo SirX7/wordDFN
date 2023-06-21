@@ -13,6 +13,7 @@ from requests.exceptions import ConnectionError, HTTPError, Timeout, TooManyRedi
 
 from worddfn import dictionaryAPI as _da
 from worddfn.setting import setting_handler as _sh
+from worddfn import __version__ as _v
 
 # Manage user setting from .json file.
 GET_SETTINGS = _sh()
@@ -191,6 +192,9 @@ def args_handler() -> dict[str]:
     parser.add_argument("-f", "--verb", nargs="?")
     parser.add_argument("-s", "--syn", nargs="?")
     parser.add_argument("-o", "--ant", nargs="?")
+    parser.add_argument(
+        "-v", "--version", action="version", version=f"wordDFN version {_v}"
+    )
 
     # Run the parser object and place the extended data in args variable as an argpaser.Namespace object.
     arg = parser.parse_args()
@@ -363,7 +367,7 @@ def menu(word: str) -> str:
     Take the word to search for and return a key that is use to lookup the word."""
 
     key = input(
-        f"{'*'*(55+(len(word)))}\nWhat part would you like to extract from the word {word}?\nOption:\nSelect/type a leter to chose your option:\nDefinition:[d/D]\nVerb:[f/F]\nSynonym:[s/S]\nAntonym:[o/O]\nExit:[q/Q]\nTo clear the clip board press [c/C]\n{'*'*(55+(len(word)))}\n> "
+        f"{'*'*(55+(len(word)))}\nWhat part would you like to extract from the word {word}?\nOption:\nSelect/type a leter to chose your option:\nDefinition:[d/D]\nVerb:[f/F]\nSynonym:[s/S]\nAntonym:[o/O]\nVersion:[v/V]\nExit:[q/Q]\nTo clear the clip board press [c/C]\n{'*'*(55+(len(word)))}\n> "
     )
     key = key.lower()
     while key:
@@ -379,6 +383,8 @@ def menu(word: str) -> str:
         elif key == "o":
             key = "ant"
             break
+        elif key == "v":
+            _sys.exit(print(f"wordDFN version {_v}"))
         elif key == "c":
             # clear the clipboard and exit.
             _pclp.copy("")
@@ -388,7 +394,7 @@ def menu(word: str) -> str:
         else:
             print(f"Option invalid , try again")
             key = input(
-                f"{'*'*(55+(len(word)))}\nWhat part would you like to extract from the word {word}?\nOption:\nSelect/type a leter to chose your option:\nDefinition:[d/D]\nVerb:[f/F]\nSynonym:[s/S]\nAntonym:[o/O]\nExit:[q/Q]\nTo clear the clip board press [c/C]\n{'*'*(55+(len(word)))}\n> "
+                f"{'*'*(55+(len(word)))}\nWhat part would you like to extract from the word {word}?\nOption:\nSelect/type a leter to chose your option:\nDefinition:[d/D]\nVerb:[f/F]\nSynonym:[s/S]\nAntonym:[o/O]\nVersion:[v/V]\nExit:[q/Q]\nTo clear the clip board press [c/C]\n{'*'*(55+(len(word)))}\n> "
             )
             key = key.lower()
     return key
@@ -509,7 +515,7 @@ def main() -> None:
                         # word = _pclp.copy("")
 
     elif word == "":
-        print(f"Using cli argument\nrun word -h to view how to run commands")
+        print(f"Using cli argument\nrun word -h to view how to run commands\n")
 
         # Args return from args_handler function.
         words = args_handler()
