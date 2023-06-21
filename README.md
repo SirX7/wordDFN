@@ -1,11 +1,18 @@
-# wordDFN  
-Search for definition with example, verbs, synonyms and antonyms of a given word.  
-  
+<div align="center">
+<img src= "./images/logo/Color_logo-no_background_RM.png" />  
+
+## Search for definition with example, verbs, synonyms and antonyms of a given word. 
+<br/>
+</div>  
+
+# About wordDFN 
 worddfn is a wordnik API CLI client that uses the **[wordnik](https://developer.wordnik.com/)** API to retrieve data about a single word and parse it into the cli (terminal) for the user.  
 
 ---
 
 ## Requirements  
+
+---
 ### Note  
 **worddfn has not been tested on Mac and Windows at the moment**, but should be able to function properly.  
 On **Mac**, need to assure that the *pbcopy* and *pbpaste* commands are present.  
@@ -36,6 +43,9 @@ For more information on the wordnik API TOS [see Wordnik API Terms of Service Ag
 ---
 
 ## How to use  
+
+---
+
 ### INSTALATION  
 before installing this module make sure you have your [API key](#requirements).  
 
@@ -158,6 +168,9 @@ pip3 install worddfn-x.x.x-py3-none-any.whl
 ---
 
 ## Credits  
+
+---
+
 This project uses:  
 [wordnik](https://www.wordnik.com/) API.  
 [pyperclip](https://pypi.org/project/pyperclip/#description) to help manage the clipboard see [pyperclip repo](https://github.com/asweigart/pyperclip).  
@@ -166,6 +179,9 @@ This project uses:
 ---
 
 ## License  
+
+---
+
 This project is licensed under the terms of the [MIT license](#LICENSE).  
   
 ### WORDNIK API  
