@@ -1,5 +1,5 @@
 <div align="center">
-<img src= "https://raw.githubusercontent.com/SirX7/wordDFN/main/images/logo/Color_logo-no_background_RM.png?token=GHSAT0AAAAAACEIAHX6XYRIKRVQ64XFUFWOZEUQ76Q" />  
+<img src= "https://github.com/SirX7/wordDFN/blob/main/images/logo/Color_logo-no_background_RM.png?raw=true" alt="wordDFN Logo" width="400" role="img"/>
 
 ## Search for definition with example, verbs, synonyms and antonyms of a given word. 
 <br/>
