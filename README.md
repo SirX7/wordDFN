@@ -2,8 +2,15 @@
 <img src= "https://github.com/SirX7/wordDFN/blob/main/images/logo/Color_logo-no_background_RM.png?raw=true" />
 
 ## Search for definition with example, verbs, synonyms and antonyms of a given word. 
-<br/>
+<br/>  
+
+[![PyPI - License](https://img.shields.io/pypi/l/worddfn?label=License&labelColor=2334&color=D058)
+](https://pypi.org/project/worddfn/) [![PyPI](https://img.shields.io/pypi/v/worddfn?labelColor=2334&color=D058)](https://pypi.org/project/worddfn/) [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/worddfn?labelColor=2334&color=D058)](https://pypi.org/project/worddfn/) ![PyPI - Wheel](https://img.shields.io/pypi/wheel/worddfn?labelColor=2334&color=D053) [![GitHub repo size](https://img.shields.io/github/repo-size/sirx7/worddfn?logo=github&label=Size&labelColor=2334&color=D058)](https://github.com/SirX7/wordDFN)
+
+
+
 </div>  
+
 
 # About wordDFN 
 worddfn is a wordnik API CLI client that uses the **[wordnik](https://developer.wordnik.com/)** API to retrieve data about a single word and parse it into the cli (terminal) for the user.  
