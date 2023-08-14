@@ -4,8 +4,7 @@
 <p style="font-size:15px">Search for definition with example, verbs, synonyms and antonyms of a given word.</p>
 
 
-[![PyPI - License](https://img.shields.io/pypi/l/worddfn?label=License&labelColor=2334&color=D058)
-](https://pypi.org/project/worddfn/) [![PyPI](https://img.shields.io/pypi/v/worddfn?labelColor=2334&color=D058)](https://pypi.org/project/worddfn/) [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/worddfn?labelColor=2334&color=D058)](https://pypi.org/project/worddfn/) ![PyPI - Wheel](https://img.shields.io/pypi/wheel/worddfn?labelColor=2334&color=D053) [![GitHub repo size](https://img.shields.io/github/repo-size/sirx7/worddfn?logo=github&label=Size&labelColor=2334&color=D058)](https://github.com/SirX7/wordDFN)
+[![PyPI - License](https://img.shields.io/pypi/l/worddfn?label=License&labelColor=2334&color=D058)](https://pypi.org/project/worddfn/) [![PyPI](https://img.shields.io/pypi/v/worddfn?labelColor=2334&color=D058)](https://pypi.org/project/worddfn/) [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/worddfn?labelColor=2334&color=D058)](https://pypi.org/project/worddfn/) ![PyPI - Wheel](https://img.shields.io/pypi/wheel/worddfn?labelColor=2334&color=D053) [![GitHub repo size](https://img.shields.io/github/repo-size/sirx7/worddfn?logo=github&label=Size&labelColor=2334&color=D058)](https://github.com/SirX7/wordDFN)
 
 </div>  
 </br>
